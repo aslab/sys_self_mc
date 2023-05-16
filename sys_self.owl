@@ -16,7 +16,7 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Classes
+    // Object Properties
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
@@ -24,29 +24,208 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Architecture -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#constrainsCapability -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Architecture">
-        <rdfs:comment>System Architecture is an abstract conceptualization, global, and focused to achieve the mission and life cycle concepts of the system. It describes a solution based on principles, concepts, and properties logically related to and consistent with each other.
-
-It provides features, properties, and characteristics which satisfy, as far as possible, the problem or opportunity expressed by a set of system requirements (traceable to mission/business and stakeholder requirements) and life cycle concepts (e.g., operational, support) and which are implementable through technologies (e.g., mechanics, electronics, hydraulics, software, services, procedures, human activity).
-
-It may also be applied to more than one system, in some cases forming the common structure, pattern, and set of requirements for classes or families of similar or related systems.
-
-[SEBok]</rdfs:comment>
-    </owl:Class>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#constrainsCapability">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#EnvironmentalConstraint"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+    </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Behavior -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#constrainsComponent -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Behavior">
-        <rdfs:comment>(1) Systems behavior is a change which leads to events in itself or other systems. Thus, action, reaction or response may constitute behavior in some cases. [Ackoff 1971]. This is the system science definition. Any system has behavior if its actions are in some way visible to systems around it. [SEBoK]
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#constrainsComponent">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentConstraint"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+    </owl:ObjectProperty>
+    
 
-(2) The effect produced when an instance of a complex system or organism is used in its operational environment. This definition associates behavior with an emergent outcome of (complex) deployed system, more analogus to human/animal behavior. Taking this view, the whole organism has behavior but not any of its element systems; e.g., cars have behavior (when driven by people), engines have functions. [SEBoK]
 
-We relate both perspectives by defining behavior as the way in which a system operates and interacts with its environment. This includes the observable actions and responses of the system as a whole.</rdfs:comment>
-    </owl:Class>
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#contributesToValue -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#contributesToValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Value"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#enables -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#enables">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasComponentStatus -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasComponentStatus">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentStatus"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasGoalStatus -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasGoalStatus">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Goal"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#GoalStatus"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasInterface -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasInterface">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Interface"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasSystemStatus -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasSystemStatus">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#System"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#SystemStatus"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#interestedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#interestedIn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Stakeholder"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Value"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#isAlignedWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#isAlignedWith">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Goal"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Value"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#measuresCapability -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#measuresCapability">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#TechnicalPerformanceMeasure"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#measuresGoal -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#measuresGoal">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfPerformance"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#mesuresValue -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#mesuresValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfEffectiveness"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Value"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#performsFunction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#performsFunction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Function"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#realizedThrough -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#realizedThrough">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasComponentStatusValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasComponentStatusValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentStatus"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasGoalStatusValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasGoalStatusValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#GoalStatus"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasMeasurementValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasMeasurementValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Metric"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasSystemStatusValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasSystemStatusValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#SystemStatus"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#isType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#isType">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Interface"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
     
 
 
@@ -57,7 +236,7 @@ We relate both perspectives by defining behavior as the way in which a system op
 
 (2) An outcome or effect which can be achieved through use of features of a system of interest and which contributes to a desired benefit or goal. [SEBoK]
 
-We define capability as the expected operational outcome of the system that satisfies a need under specified conditions with some (performance) standards.</rdfs:comment>
+We define capability as the expected operational outcome (function) of the system that   satisfies a need under specified conditions with some (performance) standards.</rdfs:comment>
     </owl:Class>
     
 
@@ -76,6 +255,38 @@ We define capability as the expected operational outcome of the system that sati
     
 
 
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#ComponentConstraint -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentConstraint">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Constraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#ComponentHW -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentHW">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#ComponentSW -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentSW">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Component"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#ComponentStatus -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentStatus">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Status"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Constraint -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Constraint">
@@ -86,28 +297,18 @@ We define capability as the expected operational outcome of the system that sati
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Design -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#EnvironmentalConstraint -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Design">
-        <rdfs:comment>(1) Design includes activities to create concepts and models, and/or to conceive something (a system / a solution that answers an intended purpose) based on them; the outcome of design activities is a coherent and purposeful set of models or representations using defined constructs and patterns (that implement principles and concepts). [ISO/IEC/IEEC 2009]
-
-(2.1) Design is the process of defining the architecture, components, interfaces, and other characteristics of a system or component; 
-(2.2) Design is the process of defining the software architecture, components, modules, interfaces, and data for a software system to satisfy specified requirements;
-[ISO/IEC/IEEE 24765:2010]</rdfs:comment>
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#EnvironmentalConstraint">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Constraint"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Environment -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Function -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Environment">
-        <rdfs:comment>(1) Anything affecting a subject system or affected by a subject system through interactions with it, or anything sharing an interpretation of interactions with a subject system. [IEEE 1175.1-2002 (R2007), 3.6]
-
-(2) The surroundings (natural or man‐made) in which the system‐of-interest is utilized and supported; or in which the system is being developed, produced or retired. [INCOSE 2010]
-
-(3) The operational environment is the environment in which systems are deployed. The problem or opportunity in response to which the system has been developed, exists in this environment. [SEBoK]
-
-We define the environmnet as the operational surroundings of the system with which it interacts.</rdfs:comment>
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Function">
+        <rdfs:comment>A function is defined by the transformation of input flows to output flows, with defined performance. It is a HW/SW or human system component definition, describing a function which can be performed by a single part of the system with identified performance. [SEBoK]</rdfs:comment>
     </owl:Class>
     
 
@@ -116,6 +317,14 @@ We define the environmnet as the operational surroundings of the system with whi
 
     <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Goal">
         <rdfs:comment>A goal is a specific task achievable in a set time [SEBoK]</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#GoalStatus -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#GoalStatus">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Status"/>
     </owl:Class>
     
 
@@ -158,64 +367,12 @@ We define the environmnet as the operational surroundings of the system with whi
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Mission -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Mission">
-        <rdfs:comment>The mission of a system is the top-level function of the system; the one that synthesizes all transformation of all inputs and solicitations into outputs and reactions. [SEBoK]
-
-It is the result of the mission analysis, the set of concept definition activities. It examines the problem space and the needs of the business or enterprise and stakeholders. This activity focuses on the identification of the primary purpose(s) of the solution (its &quot;mission&quot;), while Stakeholder Needs and Requirements activity explores what capabilities stakeholders desire in accomplishing the mission and may include some detail on the performance of certain aspects of the solution. [SEBoK]</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Need -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Need">
-        <rdfs:comment>The class need conceptualizes stakeholder needs and requirements.
-
-The stakeholder needs and requirements definition process identifies stakeholders, or stakeholder classes, involved with the system throughout its life cycle, and their needs. It analyzes and transforms these needs into a common set of stakeholder requirements that express the intended interaction the system will have with its operational environment and that are the reference against which each resulting operational capability is validated. The stakeholder requirements are defined considering the context of the system-of-interest with the interoperating systems and enabling systems. [ISO/IEC/IEEE,2015]. It represents the views of those at the business or enterprise operations level—that is, of users, acquirers, customers, and other stakeholders as they relate to the problem (or opportunity). [SEBoK]
-
-The stakeholder requirements are defined for a system that can provide the services needed by users and other stakeholders in a defined environment. [ISO/IEC/IEEE, 2015, section 6.4.1]</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Objective -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Objective">
-        <rdfs:comment>An objective is a desired outcome which need to be achieved. [SEBoK]</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Requirement -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Requirement">
-        <rdfs:comment>The class requirement conceptualizes system requirements.
-
-(1a) A System Requirement is a statement that transforms the stakeholder, user-oriented view of desired capabilities into a technical view, of a solution that meets the operational needs of the user. [ISO/IEC/IEEE, 2015, section 6.4.2]
-
-(1b) The System Requirement Definition process creates a set of measurable system requirements that specify, from the supplier’s perspective, what characteristics, attributes, and functional and performance requirements the system is to possess, in order to satisfy stakeholder requirements. [ISO/IEC/IEEE, 2015, section 6.4.2]</rdfs:comment>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Stakeholder -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Stakeholder">
         <rdfs:comment>(1) Individual or organization having a right, share, claim, or interest in a system or in its possession of characteristics that meet their needs and expectations [ISO/IEC/IEEE 2015]
 
 (2) An individual, team, or organization (or classes thereof) with interests in, or concerns relative to, a system. [ISO/IEC 2007]</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#State -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#State">
-        <rdfs:comment>(1) The values of key system element qualities or properties at a given time. [Ackoff 1971]
-
-(2) In Control Theory, the state variables are the smallest possible subset of system variables that can represent the entire state of the system at any given time. [Nise 2010]</rdfs:comment>
     </owl:Class>
     
 
@@ -230,10 +387,20 @@ For us, status is aligned with a description of the current or future potential,
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Task -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#System -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Task">
-        <rdfs:comment>In a robotic context, a task refers to a specific set of actions or operations that a robot is designed to perform to achieve a particular goal. Tasks can range from simple actions, such as picking up an object, to complex operations, such as assembling a product or navigating an environment.</rdfs:comment>
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#System">
+        <rdfs:comment>(1) An open, concrete system of technical or socio-technical elements which is the focus of a SE life cycle . Its characteristics include being created by and for people, having a purpose and satisfying key stakeholders’ value propositions when considered as part of a broader system context . [SEBoK]
+
+(2) An engineered system is a system designed or adapted to interact with an anticipated operational environment to achieve one or more intended purposes while complying with applicable constraints. [INCOSE]</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#SystemStatus -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#SystemStatus">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Status"/>
     </owl:Class>
     
 
@@ -252,7 +419,7 @@ For us, status is aligned with a description of the current or future potential,
     <!-- http://www.semanticweb.org/esther/ontologies/sys-self#Value -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#Value">
-        <rdfs:comment>In systems engineering we generally use the notion of &quot;value&quot; to describe the amount of benefit some thing, feature or capability provides to various stakeholders. [SEBoK]. It is an attribute of the problem space and considers the optimum set of requirements to deliver customer satisfaction.</rdfs:comment>
+        <rdfs:comment>In systems engineering we generally use the notion of &quot;value&quot; to describe the amount of benefit some thing, feature or capability provides to various stakeholders. It is an attribute of the problem space and considers the optimum set of requirements to deliver customer satisfaction. [SEBoK].</rdfs:comment>
     </owl:Class>
 </rdf:RDF>
 
