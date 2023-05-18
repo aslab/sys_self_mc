@@ -1,0 +1,545 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/esther/ontologies/rm_domain#"
+     xml:base="http://www.semanticweb.org/esther/ontologies/rm_domain"
+     xmlns:rm="http://www.semanticweb.org/esther/ontologies/rm_domain#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain">
+        <owl:versionIRI rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain/1.0.0"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self/1.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasComponentStatusValue -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasComponentStatusValue">
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>AVAILABLE</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>DEGRADED</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>IN_USE</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>UNAVAILABLE</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys-self#hasGoalStatusValue -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/esther/ontologies/sys-self#hasGoalStatusValue">
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>COMPLETED</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>FAILED</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>IN_PROGRESS</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>NOT_STARTED</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#ActuatorInterface -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#ActuatorInterface">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Interface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryLife -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryLife">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#TechnicalPerformanceMeasure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#CommunicateOperator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#CommunicateOperator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Communication -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Communication">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+        <rdfs:comment>The ability to transmit data and receive instructions from external sources.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#CommunicationAvailability -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#CommunicationAvailability">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfPerformance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Controller -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Controller">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentSW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#CuttingHead -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#CuttingHead">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentHW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#EconomicValue -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#EconomicValue">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Value"/>
+        <rdfs:comment>The economic value of the extracted mineral.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#EfficiencyValue -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#EfficiencyValue">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Value"/>
+        <rdfs:comment>The value associated with maximizing extraction efficiency and minimizing time and resources.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#EnergyConsumption -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#EnergyConsumption">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfEffectiveness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#ExtractMineral -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#ExtractMineral">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Extraction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Extraction">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+        <rdfs:comment>The ability to extract the mineral from the vein.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#ExtractionPercentage -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#ExtractionPercentage">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfEffectiveness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#HighTemperature -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#HighTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#EnvironmentalConstraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#InternalInterface -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#InternalInterface">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Interface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#LocalizationSensors -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#LocalizationSensors">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Sensors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Localizator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Localizator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentSW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#LowVIsibility -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#LowVIsibility">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#EnvironmentalConstraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Manipulation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Manipulation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+        <rdfs:comment>The ability to manipulate tools or equipment necessary for mining.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MineExploiter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MineExploiter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Stakeholder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MineWorker -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MineWorker">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Stakeholder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MineralDetectionAccuracy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MineralDetectionAccuracy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfPerformance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MineralDetector -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MineralDetector">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentSW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MineralSensors -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MineralSensors">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Sensors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MobilitySystem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MobilitySystem">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentHW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Navigation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Navigation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+        <rdfs:comment>The ability of the miner robot to move and navigate through the mine.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationAccuracy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationAccuracy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfPerformance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationTime -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationTime">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfPerformance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Planner -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Planner">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentSW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#PowerConsumption -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#PowerConsumption">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentConstraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#PowerSupply -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#PowerSupply">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentHW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#ReconfigurationRate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#ReconfigurationRate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfEffectiveness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#ReconfigurationTime -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#ReconfigurationTime">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfEffectiveness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#ResistivitySensors -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#ResistivitySensors">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Sensors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#RestrictedSpace -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#RestrictedSpace">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#EnvironmentalConstraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#RoboticWorker -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#RoboticWorker">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Stakeholder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SafetyLevel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SafetyLevel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfEffectiveness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SafetyValue -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SafetyValue">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Value"/>
+        <rdfs:comment>The importance of ensuring the safety of the robot and human workers in the mine.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Screw -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Screw">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MobilitySystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Sensing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Sensing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Capability"/>
+        <rdfs:comment>The ability to sense the surrounding environment, including the presence of the mineral vein.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SensorAccuracy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorAccuracy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#TechnicalPerformanceMeasure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SensorInterface -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorInterface">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Interface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SensorRange -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorRange">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentConstraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Sensors -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Sensors">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentHW"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SlurryProcessingRate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SlurryProcessingRate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfPerformance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SlurryProcessorCapacity -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SlurryProcessorCapacity">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#ComponentConstraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SuccessRate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SuccessRate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#MeasureOfEffectiveness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#SurfaceOperator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#SurfaceOperator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Stakeholder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#TemperatureSensors -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#TemperatureSensors">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Sensors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Track -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Track">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MobilitySystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#UserInterface -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#UserInterface">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Interface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Waypoint -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Waypoint">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys-self#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#Whiskers -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#Whiskers">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Sensors"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
