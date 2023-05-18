@@ -7,6 +7,10 @@
   <maintainer email="e.aguado@upm.es">Esther Aguado González</maintainer>
   <license>TODO: License declaration</license>
 
+  <buildtool_depend>ament_python</buildtool_depend>
+  <build_depend>setuptools</build_depend>
+
+
   <exec_depend>python3-owlready2-pip</exec_depend>
   <exec_depend>java</exec_depend>
 
