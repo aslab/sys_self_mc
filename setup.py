@@ -12,10 +12,10 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name), glob('owl/*.owl')),
+        (os.path.join('share', package_name, "ontologies"), glob('ontologies/*.owl')),
         (os.path.join('share', package_name), glob('launch/*.launch.py'))
     ],
-    install_requires=['setuptools', 'rclpy',
+    install_requires=['setuptools',
                         'owlready2>=0.24'],
     zip_safe=True,
     maintainer='Esther Aguado Gonzalez',
@@ -25,6 +25,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'ros_mc = sys_self_mc.ros_mc:main',
         ],
     },
 )

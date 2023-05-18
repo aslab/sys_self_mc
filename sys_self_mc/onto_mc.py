@@ -1,15 +1,17 @@
 
 from owlready2 import get_ontology, destroy_entity, sync_reasoner_pellet, onto_path
 import logging
-import signal, sys
+import signal, sys, os
 from threading import Lock
 from datetime import datetime
 
+
 class SysSelf:
 
-    def __init__(self, app_file):
+    def __init__(self, owl_path, owl_name):
         self.onto = None       # owl model
-        self.owl_file = app_file
+        self.owl_path = owl_path
+        self.owl_name = owl_name
         signal.signal(signal.SIGINT, self.save_ontology_exit)
         self.ontology_lock = Lock()
         self.isInitialized = True
@@ -40,22 +42,9 @@ class SysSelf:
     def load_OWL_file(self):
         try:
             # if this raise errors, check owl:imports in owl_file, it should be the URI ending in /
-            onto_path.append("/home/esther/robominers_ws/src/sysself/ontologies/") # add ontology dependencies
-            print(self.owl_file)
-            self.onto = get_ontology(self.owl_file).load()
-            print("LOADED")
+            onto_path.append(self.owl_path) # add ontology dependencies
+            path_new = self.owl_path + "/" + self.owl_name
+            self.onto = get_ontology(path_new).load()
         except Exception as e:
             logging.exception("{0}".format(e))
             return None
-        
-
-
-### main
-ss = SysSelf("/home/esther/robominers_ws/src/sysself/ontologies/rm_domain.owl")
-ss.load_OWL_file()
-a = ss.onto.search(iri = "*Nav*")
-print(list(a))
-
-
-# TODO fix ontology paths
-
