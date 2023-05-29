@@ -25,7 +25,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'ros_mc = sys_self_mc.ros_mc:main',
+            'sys_self_node = sys_self_mc.sys_self_node:main',
         ],
     },
 )

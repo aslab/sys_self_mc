@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/esther/ontologies/app_loc#"
+     xml:base="http://www.semanticweb.org/esther/ontologies/app_loc"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sys_self="http://www.semanticweb.org/esther/ontologies/sys_self#"
+     xmlns:rm_domain="http://www.semanticweb.org/esther/ontologies/rm_domain#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc">
+        <owl:versionIRI rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc/"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain/"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#LocalizationSensor"/>
+        <sys_self:contributesToGoal rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#wp1"/>
+        <sys_self:hasComponentStatus rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#camera_status"/>
+        <sys_self:hasInterface rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#camera_interface"/>
+        <sys_self:realizes rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_accuracy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_accuracy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorAccuracy"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav_accuracy_01"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#camera"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.5</sys_self:hasMetricValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_interface -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_interface">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorInterface"/>
+        <sys_self:isType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">/rgbd_camera/points</sys_self:isType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_range -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_range">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorRange"/>
+        <rm_domain:hasSensorRangeValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">4.0</rm_domain:hasSensorRangeValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#ComponentStatus"/>
+        <sys_self:hasComponentStatusValue>AVAILABLE</sys_self:hasComponentStatusValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_in -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_in">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Interface"/>
+        <sys_self:isType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">/rgbd_camera/points</sys_self:isType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_out -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_out">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Interface"/>
+        <sys_self:isType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">/scan</sys_self:isType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#interface_adaptor_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#interface_adaptor_01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#InterfaceAdaptor"/>
+        <rm_domain:hasInterfaceIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_in"/>
+        <rm_domain:hasInterfaceOut rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_out"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#LocalizationSensor"/>
+        <sys_self:contributesToGoal rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#wp1"/>
+        <sys_self:hasComponentStatus rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_status"/>
+        <sys_self:hasInterface rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_interface"/>
+        <sys_self:realizes rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_accuracy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_accuracy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorAccuracy"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav_accuracy_01"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#lidar"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.9</sys_self:hasMetricValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_interface -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_interface">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorInterface"/>
+        <sys_self:isType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">/scan</sys_self:isType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_range -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_range">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SensorRange"/>
+        <rm_domain:hasSensorRangeValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">10.0</rm_domain:hasSensorRangeValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#ComponentStatus"/>
+        <sys_self:hasComponentStatusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AVAILABLE</sys_self:hasComponentStatusValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#mine_wk_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#mine_wk_01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MineWorker"/>
+        <sys_self:interestedIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_exploration"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#mission_safety -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#mission_safety">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SafetyLevel"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav_mission_success_rate_01"/>
+        <sys_self:measuresValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_robot_safety"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.8</sys_self:hasMetricValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Navigation"/>
+        <sys_self:contributesToValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_exploration"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#nav_accuracy_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#nav_accuracy_01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationAccuracy"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav_mission_success_rate_01"/>
+        <sys_self:measuresReachedCapability rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.6</sys_self:hasMetricValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#nav_mission_success_rate_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#nav_mission_success_rate_01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionSuccessRate"/>
+        <sys_self:measuresValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_exploration"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#robotic_wk_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#robotic_wk_01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#RoboticWorker"/>
+        <sys_self:interestedIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_robot_safety"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#surface_operator_wk_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#surface_operator_wk_01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SurfaceOperator"/>
+        <sys_self:interestedIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_efficiency"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#value_efficiency -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#value_efficiency">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#EfficiencyValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#value_exploration -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#value_exploration">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#ExplorationValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#value_robot_safety -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#value_robot_safety">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#RobotSafetyValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#wp1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#wp1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Waypoint"/>
+        <sys_self:hasGoalStatus rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#wp_status"/>
+        <sys_self:isAlignedWith rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_efficiency"/>
+        <sys_self:isAlignedWith rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_exploration"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#wp_status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#wp_status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#GoalStatus"/>
+        <sys_self:hasGoalStatusValue>IN_PROGRESS</sys_self:hasGoalStatusValue>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

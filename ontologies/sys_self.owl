@@ -8,7 +8,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self">
-        <owl:versionIRI rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self/1.0.0"/>
+        <owl:versionIRI rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self/"/>
     </owl:Ontology>
     
 
@@ -21,6 +21,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#affectsMetric -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#affectsMetric">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Metric"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Metric"/>
+    </owl:ObjectProperty>
     
 
 
@@ -42,9 +51,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#contributesTo -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#contributesToGoal -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#contributesTo">
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#contributesToGoal">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Component"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Goal"/>
     </owl:ObjectProperty>
@@ -105,37 +114,29 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#measuresCapability -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#measuresComponentPerf -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#measuresCapability">
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#measuresComponentPerf">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#TechnicalPerformanceMeasure"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Component"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#measuresReachedCapability -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#measuresReachedCapability">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfPerformance"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Capability"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#measuresGoal -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#measuresValue -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#measuresGoal">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfPerformance"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Goal"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#mesuresValue -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#mesuresValue">
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#measuresValue">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfEffectiveness"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Value"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#performsFunction -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#performsFunction">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Component"/>
     </owl:ObjectProperty>
     
 
@@ -178,9 +179,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#hasMeasurementValue -->
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#hasMetricValue -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#hasMeasurementValue">
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#hasMetricValue">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Metric"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
     </owl:DatatypeProperty>
