@@ -61,11 +61,71 @@ class SysSelf:
         
     def get_relations(self):
         # self.perform_reasoning()
-        print((self.onto.Component.instances()))
+        # print((self.onto.Component.instances()))
+        # a = self.onto.search_one(iri="*", type=self.onto.Component)
+        # print(a)
+        # print(a.get_properties())
 
-    # def yoneda_lemma(self):
-    #     # get all relationships on the capability / component / goal we are going to substitute
-    #     # decide the reconfig
+        # print(a.is_a)  # [rm_domain.LocalizationSensor]
+        # print(a.INDIRECT_is_a) # [rm_domain.LocalizationSensor, rm_domain.Sensor, owl.Thing, sys_self.ComponentHW, sys_self.Component]
+        # print(self.onto.Component.descendants())
+        # print()
+        # a = self.onto.search_one(iri="*", type=self.onto.Component)
+        # print(a)
+        # for prop in a.get_properties():
+        #     for value in prop[a]:
+        #         print("%s.%s == %s" % (a.name, prop.python_name, value))
+        self.get_adaption_requeriments()
+
+
+
+    def get_adaption_requeriments(self):
+        # application of yoneda lemma
+        # decide the reconfig
+        # self.perform_reasoning()
+        case = 'lidar'
+        adapt_candidates = []
+        components = self.onto.search(iri="*", type=self.onto.Component)
+        comp_case = self.onto.search_one(iri="*{}".format(case), type=self.onto.Component)
+        components.remove(comp_case) # remove case component
+
+
+        # check if main relationships (capability/goal) remains
+        for comp in components:
+                if self.onto.realizes[comp] == self.onto.realizes[comp_case]:
+                    # print("Component", comp.name, "realizes capablity", self.onto.realizes[comp], "as", comp_case.name, "did.")
+                    if self.onto.contributesToGoal[comp] == self.onto.contributesToGoal[comp_case]:
+                        # print("Component", comp.name, "contributes to goal", self.onto.contributesToGoal[comp], "as", comp_case.name, "did.")
+                        if self.check_component_status(comp) == ["AVAILABLE"]:
+                            # print("Component", comp.name, "available contributing to the same goal and capability")
+                            print("Component {} suitable for adaptation".format(comp.name))
+                            adapt_candidates.append(comp)
+                #     else:
+                #         print("Component", comp.name, "not suitable, not contributes to goal", self.onto.contributesToGoal[comp])
+                # else:
+                #     print("Component", comp.name, "not suitable, not realizes capability", self.onto.realizes[comp])
+        
+        # check interfaces to decide if we need more components
+        # for candidate in adapt_candidates:
+        #     candidate_int = self.check_interface(candidate)
+        #     comp_case_int = self.check_interface(candidate)
+
+    def check_component_status(self, component):
+        comp_status = self.onto.search_one(iri=("*{}*").format(component.name), type=self.onto.ComponentStatus)
+        if comp_status != None:
+            return self.onto.hasComponentStatusValue[comp_status]
+        else:
+            return None
+        
+    # def check_interface(self, component):
+    #     int_candidate_indiv = self.onto.search_one(iri=("*{}*").format(component.name), type=self.onto.Interface)
+    #     if int_candidate_indiv != None:
+    #         return self.onto.isType[int_candidate_indiv]
+    #     else:
+    #         return None
+    # def check_adaptor_interface(self):
+    #     interface_adaptor = self.onto.search_one(iri=("*"), type=self.onto.InterfaceAdaptor)
+    #     # not valid to search type interface adaptor because Interface Adaptor is rm we want a general one
 
     # def push_out(self):
         # detect the entities affected by a contingency AND the entities affected by a change
@@ -73,9 +133,8 @@ class SysSelf:
     # def change_status(self, individual, value):
     #     #TODO
 
-
-path = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
+path_owl = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
 names = ["sys_self.owl","rm_domain.owl", "app_loc.owl"]
-clase = SysSelf(path, names)
+clase = SysSelf(path_owl, names)
 clase.load_OWL_file()
 clase.get_relations()
