@@ -9,7 +9,8 @@ from ament_index_python.packages import get_package_share_directory
 class SysSelf:
 
     def __init__(self, owl_path, owl_names):
-        self.onto = None     # owl model
+        self.onto = None     # owl application model
+        self.sysself = None # owl main model
         self.owl_path = owl_path
         self.owl_names = owl_names
         
@@ -32,14 +33,14 @@ class SysSelf:
         return return_value
 
     # For debugging purposes: saves the runtime ontology in file
-    def save_ontology_exit(self, signal, frame):
+    def save_ontology_exit(self):
         # self.get_logger().info("----------Saving current ontology log------------")
-        now = datetime.now()
-        formatted_date = now.strftime("%Y-%m-%d_%H-%M-%S")
-        file_str = "log_owl_" + formatted_date + ".owl"
+        # now = datetime.now()
+        # formatted_date = now.strftime("%Y-%m-%d_%H-%M-%S")
+        # file_str = "log_owl_" + formatted_date + ".owl"
+        file_str = "log_owl.owl"
         self.onto.save(file=file_str, format="rdfxml")
         sys.exit(0)
-
 
     def load_OWL_file(self):
         try:
@@ -50,91 +51,121 @@ class SysSelf:
                 onto_path.append(self.owl_path) # add ontology dependencies
                 onto_partial.append(get_ontology(path_new).load())
 
-            self.onto = onto_partial[0] # the first ontology loaded must be sysSelf
-            # load also domain and systems ontology
+            self.onto = onto_partial[0] # the first ontology loaded must be sys self
+            # load also domain and application ontology
             self.onto.imported_ontologies.append(onto_partial[1])
             self.onto.imported_ontologies.append(onto_partial[2])
-            
+            self.sysself = onto_partial[2] 
+           
         except Exception as e:
             logging.exception("{0}".format(e))
             return None
+
+    def receive_update(self):
+        msg = "UNAVAILABLE"
+        source ="lidar_status"
+        type = "hasComponentStatusValue"
+       
+        entity = self.onto.search_one(iri="*{}".format(source))
+
+        # update OWL
+        if entity:
+            if type == "hasComponentStatusValue":
+                with self.ontology_lock:
+                    with self.onto:
+                        entity.hasComponentStatusValue.clear()
+                        entity.hasComponentStatusValue.append(msg)
+                self.perform_reasoning()
+
+                print((self.onto.lidar_status.hasComponentStatusValue))
+                return True
         
-    def get_relations(self):
-        # self.perform_reasoning()
-        # print((self.onto.Component.instances()))
-        # a = self.onto.search_one(iri="*", type=self.onto.Component)
-        # print(a)
-        # print(a.get_properties())
-
-        # print(a.is_a)  # [rm_domain.LocalizationSensor]
-        # print(a.INDIRECT_is_a) # [rm_domain.LocalizationSensor, rm_domain.Sensor, owl.Thing, sys_self.ComponentHW, sys_self.Component]
-        # print(self.onto.Component.descendants())
-        # print()
-        # a = self.onto.search_one(iri="*", type=self.onto.Component)
-        # print(a)
-        # for prop in a.get_properties():
-        #     for value in prop[a]:
-        #         print("%s.%s == %s" % (a.name, prop.python_name, value))
-        self.get_adaption_requeriments()
-
-
-
-    def get_adaption_requeriments(self):
-        # application of yoneda lemma
-        # decide the reconfig
-        # self.perform_reasoning()
-        case = 'lidar'
-        adapt_candidates = []
-        components = self.onto.search(iri="*", type=self.onto.Component)
-        comp_case = self.onto.search_one(iri="*{}".format(case), type=self.onto.Component)
-        components.remove(comp_case) # remove case component
-
-
-        # check if main relationships (capability/goal) remains
-        for comp in components:
-                if self.onto.realizes[comp] == self.onto.realizes[comp_case]:
-                    # print("Component", comp.name, "realizes capablity", self.onto.realizes[comp], "as", comp_case.name, "did.")
-                    if self.onto.contributesToGoal[comp] == self.onto.contributesToGoal[comp_case]:
-                        # print("Component", comp.name, "contributes to goal", self.onto.contributesToGoal[comp], "as", comp_case.name, "did.")
-                        if self.check_component_status(comp) == ["AVAILABLE"]:
-                            # print("Component", comp.name, "available contributing to the same goal and capability")
-                            print("Component {} suitable for adaptation".format(comp.name))
-                            adapt_candidates.append(comp)
-                #     else:
-                #         print("Component", comp.name, "not suitable, not contributes to goal", self.onto.contributesToGoal[comp])
-                # else:
-                #     print("Component", comp.name, "not suitable, not realizes capability", self.onto.realizes[comp])
-        
-        # check interfaces to decide if we need more components
-        # for candidate in adapt_candidates:
-        #     candidate_int = self.check_interface(candidate)
-        #     comp_case_int = self.check_interface(candidate)
-
-    def check_component_status(self, component):
-        comp_status = self.onto.search_one(iri=("*{}*").format(component.name), type=self.onto.ComponentStatus)
-        if comp_status != None:
-            return self.onto.hasComponentStatusValue[comp_status]
+            elif type == "a":
+                # TODO REST CASES
+                pass
         else:
-            return None
+            return False
         
-    # def check_interface(self, component):
-    #     int_candidate_indiv = self.onto.search_one(iri=("*{}*").format(component.name), type=self.onto.Interface)
-    #     if int_candidate_indiv != None:
-    #         return self.onto.isType[int_candidate_indiv]
-    #     else:
-    #         return None
-    # def check_adaptor_interface(self):
-    #     interface_adaptor = self.onto.search_one(iri=("*"), type=self.onto.InterfaceAdaptor)
-    #     # not valid to search type interface adaptor because Interface Adaptor is rm we want a general one
+    def get_functors_category(self, entity):
+        functors = []
+  
+        # TODO if entity is a metric - check type of metric and which main element affects
 
-    # def push_out(self):
-        # detect the entities affected by a contingency AND the entities affected by a change
+        if entity:
+            for entity_class in entity.INDIRECT_is_a: # get main class of the entity
+                if entity_class.name == "Component" or entity_class.name == "Value" or entity_class.name == "Goal" or  entity_class.name == "Capability":
+                    break
+
+        # functors are relationships in which the range is capability, goal, component (excluding itself type)
+            for property in entity.get_properties():
+                range_name = property.range[0].name
+                if ((range_name == "Component" or range_name == "Value" or range_name == "Goal" or  range_name == "Capability") and range_name != entity_class.name):
+                    functors.append(property)
+            return (functors, entity_class)
+        else:
+            return (None, None)
+
+    def get_adaption_mechanism(self):
+        source ="lidar_status"
+        type = source.split("_")[0]
+        entity = self.onto.search_one(iri="*{}".format(type)) # lidar
+        self.perform_reasoning()
+        (funct, cat) = self.get_functors_category(entity)
+
+        
+        if cat.name == "Component":
+            adaption = self.adaption_mechanism_component(entity, funct, cat)
+            print(adaption)
+           
+
+    def adaption_mechanism_component(self, entity, funct, cat):
+        entities = self.onto.search(iri="*", type = cat) # objects in the seame category
+        entities.remove(entity) # remove working element
+         # search functors preserved
+        for fnt in funct:
+            for entity_alt in entities:
+                if fnt[entity_alt] != fnt[entity]:
+                    if entity_alt in entities: entities.remove(entity_alt)
+                    break
+            print("Alternative component found:", entities)
+
+                # search required changes in morphisms
+            entity_value = entities[0] # only supperted one alternative entity 
+            morphisms = list(set(entity_value.get_properties()).symmetric_difference(set(funct))) # all the relationships not preserved in functors are morph
+            return_msg = [None, None]
+            for morph in morphisms:
+                related_individual = morph[entity_value][0]
+                for prop in related_individual.get_properties():
+                    if prop.name == "hasComponentStatusValue": # check availability
+                        if "AVAILABLE" in related_individual.hasComponentStatusValue:
+                            print("Component", entity_value, "AVAILABLE")
+                            return_msg[0] = entity_value
+                                
+                        else:
+                            print("Alternative component NOT AVAILABLE")
+                    elif prop.name == "isType": # check interface morphism between components
+                        in_interface = related_individual.isType
+                        entity_int_name = entity.hasInterface[0]
+                        out_interface = entity_int_name.isType
+                            
+                        required_element_interface_in = self.onto.search(iri = "*in", isType = in_interface)
+                        required_element_interface_out = self.onto.search(iri = "*out", isType = out_interface)
+                        required_element = self.onto.search_one(iri = "*", hasInterfaceOut = required_element_interface_out[0], hasInterfaceIn = required_element_interface_in[0])
+                        print("REQUIRES", required_element.name, "to be equivalent")
+                        return_msg[1] = required_element
+
+                    else:
+                        print("Property", prop, "not supported yet.")
+        return return_msg
     
-    # def change_status(self, individual, value):
-    #     #TODO
+    def get_new_pushout(self, adapt):
+        
+            
 
-path_owl = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
-names = ["sys_self.owl","rm_domain.owl", "app_loc.owl"]
-clase = SysSelf(path_owl, names)
-clase.load_OWL_file()
-clase.get_relations()
+if __name__ == '__main__':
+    path_owl = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
+    names = ["app_loc.owl","rm_domain.owl", "sys_self.owl"]
+    clase = SysSelf(path_owl, names)
+    clase.load_OWL_file()
+    clase.get_adaption_mechanism()
+    clase.save_ontology_exit()
