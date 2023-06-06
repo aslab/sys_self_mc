@@ -143,9 +143,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryLife -->
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryConsumption -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryLife">
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryConsumption">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#TechnicalPerformanceMeasure"/>
     </owl:Class>
     
@@ -214,14 +214,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#EfficiencyValue">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Value"/>
         <rdfs:comment>The value associated with maximizing extraction efficiency and minimizing time and resources.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#EnergyConsumption -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#EnergyConsumption">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfEffectiveness"/>
     </owl:Class>
     
 
@@ -356,6 +348,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MissionConsumption -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionConsumption">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfEffectiveness"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MissionSuccessRate -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionSuccessRate">
@@ -384,6 +384,14 @@
     <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationAccuracy -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationAccuracy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfPerformance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationConsumption -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationConsumption">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfPerformance"/>
     </owl:Class>
     

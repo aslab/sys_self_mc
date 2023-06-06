@@ -50,6 +50,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryConsumption"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#camera"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.4</sys_self:hasMetricValue>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_interface -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_interface">
@@ -73,6 +84,17 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_status">
         <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#ComponentStatus"/>
         <sys_self:hasComponentStatusValue>AVAILABLE</sys_self:hasComponentStatusValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationConsumption"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#mission_consumption"/>
+        <sys_self:measuresReachedCapability rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.8</sys_self:hasMetricValue>
     </owl:NamedIndividual>
     
 
@@ -118,6 +140,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryConsumption"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#lidar"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.8</sys_self:hasMetricValue>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_interface -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_interface">
@@ -154,6 +187,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#mission_consumption -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#mission_consumption">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionConsumption"/>
+        <sys_self:measuresValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_efficiency"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/esther/ontologies/app_loc#mission_safety -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#mission_safety">
@@ -178,7 +220,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#nav_accuracy_01">
         <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationAccuracy"/>
-        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav_mission_success_rate_01"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#mission_safety"/>
         <sys_self:measuresReachedCapability rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability"/>
         <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.6</sys_self:hasMetricValue>
     </owl:NamedIndividual>
@@ -197,6 +239,7 @@
     <!-- http://www.semanticweb.org/esther/ontologies/app_loc#pointcloud_to_laserscan -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#pointcloud_to_laserscan">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#InterfaceAdaptor"/>
         <rm_domain:hasInterfaceIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_in"/>
         <rm_domain:hasInterfaceOut rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#int_adaptor_01_out"/>
     </owl:NamedIndividual>

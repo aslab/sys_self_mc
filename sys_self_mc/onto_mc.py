@@ -17,6 +17,7 @@ class SysSelf:
         signal.signal(signal.SIGINT, self.save_ontology_exit)
         self.ontology_lock = Lock() 
 
+
     def perform_reasoning(self):
         return_value = False
         with self.ontology_lock:
@@ -115,7 +116,8 @@ class SysSelf:
         
         if cat.name == "Component":
             adaption = self.adaption_mechanism_component(entity, funct, cat)
-            print(adaption)
+        
+        self.propagate_tpm(adaption, entity)
            
 
     def adaption_mechanism_component(self, entity, funct, cat):
@@ -127,39 +129,70 @@ class SysSelf:
                 if fnt[entity_alt] != fnt[entity]:
                     if entity_alt in entities: entities.remove(entity_alt)
                     break
-            print("Alternative component found:", entities)
+        print("Alternative component found:", entities)
 
                 # search required changes in morphisms
-            entity_value = entities[0] # only supperted one alternative entity 
-            morphisms = list(set(entity_value.get_properties()).symmetric_difference(set(funct))) # all the relationships not preserved in functors are morph
-            return_msg = [None, None]
-            for morph in morphisms:
-                related_individual = morph[entity_value][0]
-                for prop in related_individual.get_properties():
-                    if prop.name == "hasComponentStatusValue": # check availability
-                        if "AVAILABLE" in related_individual.hasComponentStatusValue:
-                            print("Component", entity_value, "AVAILABLE")
-                            return_msg[0] = entity_value
-                                
-                        else:
-                            print("Alternative component NOT AVAILABLE")
-                    elif prop.name == "isType": # check interface morphism between components
-                        in_interface = related_individual.isType
-                        entity_int_name = entity.hasInterface[0]
-                        out_interface = entity_int_name.isType
-                            
-                        required_element_interface_in = self.onto.search(iri = "*in", isType = in_interface)
-                        required_element_interface_out = self.onto.search(iri = "*out", isType = out_interface)
-                        required_element = self.onto.search_one(iri = "*", hasInterfaceOut = required_element_interface_out[0], hasInterfaceIn = required_element_interface_in[0])
-                        print("REQUIRES", required_element.name, "to be equivalent")
-                        return_msg[1] = required_element
+        entity_value = entities[0] # only supperted one alternative entity 
+        morphisms = list(set(entity_value.get_properties()).symmetric_difference(set(funct))) # all the relationships not preserved in functors are morph
+        adaption_msg = [None, None]
+      
+        for morph in morphisms:
+            related_individual = morph[entity_value][0]
+     
+            for prop in related_individual.get_properties():
+                if prop.name == "hasComponentStatusValue": # check availability
 
+                    if "AVAILABLE" in related_individual.hasComponentStatusValue:
+                        print("Component", entity_value, "AVAILABLE")
+                        adaption_msg[0] = entity_value      
                     else:
-                        print("Property", prop, "not supported yet.")
-        return return_msg
+                            print("Alternative component NOT AVAILABLE")
+
+                elif prop.name == "isType": # check interface morphism between components
+
+                    in_value_interface = related_individual.isType
+                    entity_int_indiv = entity.hasInterface[0]
+                    out_value_interface = entity_int_indiv.isType
+                            
+                    required_value_interface_in = self.onto.search_one(iri = "*in", isType = in_value_interface)
+                    required_value_interface_out = self.onto.search_one(iri = "*out", isType = out_value_interface)
+
+                    required_element = self.onto.search_one(iri = "*", hasInterfaceOut = required_value_interface_out, hasInterfaceIn = required_value_interface_in)
+                    print("REQUIRES", required_element.name, "to be equivalent")
+                    adaption_msg[1] = required_element
+
+                else:
+                    print("Property", prop, "not supported yet.")
+        return adaption_msg
+
+
+    def propagate_tpm(self, adapt, entity):
+   
+        new_tpms = self.onto.search(iri ="*", measuresComponentPerf = adapt[0], type=self.sysself.TechnicalPerformanceMeasure)
+        old_tpms = self.onto.search(iri ="*",  measuresComponentPerf = entity, type=self.sysself.TechnicalPerformanceMeasure)
+        changes = {}
+
+
+        for new_tpm in new_tpms:
+            for old_tpm in old_tpms:
+                new_a_mop = new_tpm.affectsMetric
+                old_a_mop = old_tpm.affectsMetric
+                if new_a_mop == old_a_mop:
+                    if new_tpm.hasMetricValue > old_tpm.hasMetricValue:
+                        for new_mop in new_a_mop:
+                            changes[new_mop.name] = "increased"
+                    elif new_tpm.hasMetricValue < old_tpm.hasMetricValue:
+                        for new_mop in new_a_mop:
+                            changes[new_mop.name] = "decreased"
+
+                
+        return(changes)              
     
-    def get_new_pushout(self, adapt):
+    # def propagate_mop():
         
+    # def analize_value_changes():
+    
+    # def notify_stakeholder(self, value_change):
             
 
 if __name__ == '__main__':
@@ -168,4 +201,5 @@ if __name__ == '__main__':
     clase = SysSelf(path_owl, names)
     clase.load_OWL_file()
     clase.get_adaption_mechanism()
+    
     clase.save_ontology_exit()
