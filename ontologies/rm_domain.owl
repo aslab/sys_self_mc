@@ -348,9 +348,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MissionConsumption -->
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#MissionEnergySave -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionConsumption">
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionEnergySave">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfEffectiveness"/>
     </owl:Class>
     
@@ -389,9 +389,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationConsumption -->
+    <!-- http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationEnergySave -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationConsumption">
+    <owl:Class rdf:about="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationEnergySave">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#MeasureOfPerformance"/>
     </owl:Class>
     

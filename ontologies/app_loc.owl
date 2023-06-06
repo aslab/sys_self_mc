@@ -50,13 +50,13 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_consumption -->
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#camera_energy_save -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_consumption">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#camera_energy_save">
         <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryConsumption"/>
-        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#energy_save"/>
         <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#camera"/>
-        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.4</sys_self:hasMetricValue>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.8</sys_self:hasMetricValue>
     </owl:NamedIndividual>
     
 
@@ -88,11 +88,11 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption -->
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#energy_save -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption">
-        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationConsumption"/>
-        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#mission_consumption"/>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#energy_save">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#NavigationEnergySave"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#mission_energy_save"/>
         <sys_self:measuresReachedCapability rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#nav2_capability"/>
         <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.8</sys_self:hasMetricValue>
     </owl:NamedIndividual>
@@ -140,13 +140,13 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_consumption -->
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#lidar_energy_save -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_consumption">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#lidar_energy_save">
         <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#BatteryConsumption"/>
-        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#energy_consumption"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#energy_save"/>
         <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#lidar"/>
-        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.8</sys_self:hasMetricValue>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.4</sys_self:hasMetricValue>
     </owl:NamedIndividual>
     
 
@@ -187,10 +187,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#mission_consumption -->
+    <!-- http://www.semanticweb.org/esther/ontologies/app_loc#mission_energy_save -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#mission_consumption">
-        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionConsumption"/>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_loc#mission_energy_save">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionEnergySave"/>
         <sys_self:measuresValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_loc#value_efficiency"/>
     </owl:NamedIndividual>
     

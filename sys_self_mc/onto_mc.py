@@ -117,7 +117,8 @@ class SysSelf:
         if cat.name == "Component":
             adaption = self.adaption_mechanism_component(entity, funct, cat)
         
-        self.propagate_tpm(adaption, entity)
+        changes_mop = self.propagate_tpm(adaption, entity)
+        self.propagate_mop(adaption, entity, changes_mop)
            
 
     def adaption_mechanism_component(self, entity, funct, cat):
@@ -165,12 +166,11 @@ class SysSelf:
                     print("Property", prop, "not supported yet.")
         return adaption_msg
 
-
     def propagate_tpm(self, adapt, entity):
    
         new_tpms = self.onto.search(iri ="*", measuresComponentPerf = adapt[0], type=self.sysself.TechnicalPerformanceMeasure)
         old_tpms = self.onto.search(iri ="*",  measuresComponentPerf = entity, type=self.sysself.TechnicalPerformanceMeasure)
-        changes = {}
+        changes_mop = {}
 
 
         for new_tpm in new_tpms:
@@ -180,20 +180,45 @@ class SysSelf:
                 if new_a_mop == old_a_mop:
                     if new_tpm.hasMetricValue > old_tpm.hasMetricValue:
                         for new_mop in new_a_mop:
-                            changes[new_mop.name] = "increased"
+                            changes_mop[new_mop] = "increased"
                     elif new_tpm.hasMetricValue < old_tpm.hasMetricValue:
                         for new_mop in new_a_mop:
-                            changes[new_mop.name] = "decreased"
+                            changes_mop[new_mop] = "decreased"
 
                 
-        return(changes)              
+        return changes_mop            
     
-    # def propagate_mop():
-        
-    # def analize_value_changes():
-    
-    # def notify_stakeholder(self, value_change):
+    def propagate_mop(self, adapt, entity, changes_mop):
+        changes_value = {}
+
+        if changes_mop:
+            for mop in changes_mop.keys():
+                moe_affected = mop.affectsMetric
+                for moe_aff in moe_affected:
+                    for value_aff in moe_aff.measuresValue:
+                        changes_value[value_aff] = (changes_mop[mop], mop)
+                                
+                        if moe_aff.affectsMetric is not None: # propagation in MOE
+                            for moe in moe_aff.affectsMetric:
+                                changes_value[moe.measuresValue[0]] = (changes_mop[mop], mop)
+                                
+                                
+
+        # TODO capability change in MOP, GOAL
+
+        self. notify_stakeholder(changes_value)
+        return changes_value
+
+        # if changes_value:
+
+    def notify_stakeholder(self, value_change):
+        for value in value_change.keys():
+            stakeholders = self.onto.search(iri="*", interestedIn = value)
+            for sk in stakeholders:
+                print("\nValue", value.name, value_change[value][0].upper(), "after adaption because change in MOE", value_change[value][1].name)
+                print("Main stakeholder affected:", sk.name, "\n")
             
+ 
 
 if __name__ == '__main__':
     path_owl = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
