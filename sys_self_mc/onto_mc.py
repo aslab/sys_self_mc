@@ -24,7 +24,7 @@ class SysSelf:
             with self.onto:
                 try:
                     sync_reasoner_pellet(infer_property_values = True, infer_data_property_values = True, debug = 0)
-                    print("----------Reasoner executed------------")
+                    self.get_logger().info("----------Reasoner executed------------")
                     return_value = True
                 except Exception as err:
                     logging.exception("{0}".format(err))
@@ -34,7 +34,7 @@ class SysSelf:
         return return_value
 
     # For debugging purposes: saves the runtime ontology in file
-    def save_ontology_exit(self):
+    def save_ontology_exit(self, signal, frame):
         # self.get_logger().info("----------Saving current ontology log------------")
         # now = datetime.now()
         # formatted_date = now.strftime("%Y-%m-%d_%H-%M-%S")
@@ -62,23 +62,24 @@ class SysSelf:
             logging.exception("{0}".format(e))
             return None
 
-    def receive_update(self):
-        msg = "UNAVAILABLE"
-        source ="lidar_status"
-        type = "hasComponentStatusValue"
-       
+    def check_status(self, source):
         entity = self.onto.search_one(iri="*{}".format(source))
+        return entity.hasComponentStatusValue[0]
 
+
+    def receive_update(self, status, source, type):
+        entity = self.onto.search_one(iri="*{}".format(source))
         # update OWL
         if entity:
             if type == "hasComponentStatusValue":
                 with self.ontology_lock:
                     with self.onto:
                         entity.hasComponentStatusValue.clear()
-                        entity.hasComponentStatusValue.append(msg)
+                        entity.hasComponentStatusValue.append(status)
+
                 self.perform_reasoning()
 
-                print((self.onto.lidar_status.hasComponentStatusValue))
+                self.get_logger().info("OWL: Component value {} changed to {}".format(entity.name, entity.hasComponentStatusValue))
                 return True
         
             elif type == "a":
@@ -86,7 +87,7 @@ class SysSelf:
                 pass
         else:
             return False
-        
+
     def get_functors_category(self, entity):
         functors = []
   
@@ -106,19 +107,19 @@ class SysSelf:
         else:
             return (None, None)
 
-    def get_adaption_mechanism(self):
-        source ="lidar_status"
-        type = source.split("_")[0]
-        entity = self.onto.search_one(iri="*{}".format(type)) # lidar
-        self.perform_reasoning()
+    def get_adaption_mechanism(self, entity_msg):
+        # type = source.split("_")[0]
+        entity = self.onto.search_one(iri="*{}".format(entity_msg)) # lidar
+        # self.perform_reasoning()
         (funct, cat) = self.get_functors_category(entity)
 
-        
         if cat.name == "Component":
             adaption = self.adaption_mechanism_component(entity, funct, cat)
         
         changes_mop = self.propagate_tpm(adaption, entity)
         self.propagate_mop(adaption, entity, changes_mop)
+
+        return adaption
            
 
     def adaption_mechanism_component(self, entity, funct, cat):
@@ -130,7 +131,7 @@ class SysSelf:
                 if fnt[entity_alt] != fnt[entity]:
                     if entity_alt in entities: entities.remove(entity_alt)
                     break
-        print("Alternative component found:", entities)
+        self.get_logger().info("Alternative component found: {}".format(entities))
 
                 # search required changes in morphisms
         entity_value = entities[0] # only supperted one alternative entity 
@@ -144,10 +145,10 @@ class SysSelf:
                 if prop.name == "hasComponentStatusValue": # check availability
 
                     if "AVAILABLE" in related_individual.hasComponentStatusValue:
-                        print("Component", entity_value, "AVAILABLE")
+                        self.get_logger().info("Component {} AVAILABLE".format(entity_value))
                         adaption_msg[0] = entity_value      
                     else:
-                            print("Alternative component NOT AVAILABLE")
+                            self.get_logger().info("Alternative component NOT AVAILABLE")
 
                 elif prop.name == "isType": # check interface morphism between components
 
@@ -159,11 +160,11 @@ class SysSelf:
                     required_value_interface_out = self.onto.search_one(iri = "*out", isType = out_value_interface)
 
                     required_element = self.onto.search_one(iri = "*", hasInterfaceOut = required_value_interface_out, hasInterfaceIn = required_value_interface_in)
-                    print("REQUIRES", required_element.name, "to be equivalent")
+                    self.get_logger().info("REQUIRES {} to be equivalent".format(required_element.name))
                     adaption_msg[1] = required_element
 
                 else:
-                    print("Property", prop, "not supported yet.")
+                    self.get_logger().info("Property {} not supported yet.".format(prop))
         return adaption_msg
 
     def propagate_tpm(self, adapt, entity):
@@ -215,16 +216,16 @@ class SysSelf:
         for value in value_change.keys():
             stakeholders = self.onto.search(iri="*", interestedIn = value)
             for sk in stakeholders:
-                print("\nValue", value.name, value_change[value][0].upper(), "after adaption because change in MOE", value_change[value][1].name)
-                print("Main stakeholder affected:", sk.name, "\n")
+                self.get_logger().info("Value {} {} after adaption because change in MOE {}".format(value.name, value_change[value][0].upper(), value_change[value][1].name))
+                self.get_logger().info("Main stakeholder affected: {}\n".format( sk.name,))
             
  
 
-if __name__ == '__main__':
-    path_owl = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
-    names = ["app_loc.owl","rm_domain.owl", "sys_self.owl"]
-    clase = SysSelf(path_owl, names)
-    clase.load_OWL_file()
-    clase.get_adaption_mechanism()
+# if __name__ == '__main__':
+#     path_owl = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
+#     names = ["app_loc.owl","rm_domain.owl", "sys_self.owl"]
+#     clase = SysSelf(path_owl, names)
+#     clase.load_OWL_file()
+#     clase.get_adaption_mechanism()
     
-    clase.save_ontology_exit()
+#     clase.save_ontology_exit()

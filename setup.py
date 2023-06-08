@@ -26,6 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'sys_self_node = sys_self_mc.sys_self_node:main',
+            'observer_node = sys_self_mc.observer_node:main',
         ],
     },
 )
