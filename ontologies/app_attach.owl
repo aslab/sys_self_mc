@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sys_self="http://www.semanticweb.org/esther/ontologies/sys_self#"
+     xmlns:rm_domain="http://www.semanticweb.org/esther/ontologies/rm_domain#"
+     xmlns:app_attach="http://www.semanticweb.org/esther/ontologies/app_attach#">
+    <Ontology rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach">
+        <versionIRI rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach/"/>
+        <imports rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain/"/>
+        <imports rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self/"/>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#affectsInNegative -->
+
+    <AnnotationProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#affectsInNegative"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_attachable -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_attachable">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#InterfaceAdaptor"/>
+        <rm_domain:hasInterfaceIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#int_adapt_in"/>
+        <rm_domain:hasInterfaceOut rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#int_adapt_out"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#cap_extract -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#cap_extract">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Extraction"/>
+        <sys_self:contributesToValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_extraction"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#cap_support -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#cap_support">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#Support"/>
+        <sys_self:contributesToValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_robot_safety"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#goal_mineral_extracted -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#goal_mineral_extracted">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#ExtractMineral"/>
+        <sys_self:hasGoalStatus rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#goal_status"/>
+        <sys_self:isAlignedWith rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_efficiency"/>
+        <sys_self:isAlignedWith rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_extraction"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#goal_status -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#goal_status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#GoalStatus"/>
+        <sys_self:hasGoalStatusValue>IN_PROGRESS</sys_self:hasGoalStatusValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#int_adapt_in -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#int_adapt_in">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Interface"/>
+        <sys_self:isType>couplingLink</sys_self:isType>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#int_adapt_out -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#int_adapt_out">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Interface"/>
+        <sys_self:isType>base_link</sys_self:isType>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#mine_exp -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#mine_exp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MineExploiter"/>
+        <sys_self:interestedIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_extraction"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#mine_op -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#mine_op">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MineWorker"/>
+        <sys_self:interestedIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_efficiency"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#mineral_ext_rate -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#mineral_ext_rate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MineralExtractedRate"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#miss_mineral_productivity"/>
+        <sys_self:measuresReachedCapability rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#cap_extract"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.8</sys_self:hasMetricValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#mineral_processing_time -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#mineral_processing_time">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MineralProcessingTime"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#miss_duration"/>
+        <sys_self:measuresReachedCapability rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#cap_extract"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.4</sys_self:hasMetricValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#miss_duration -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#miss_duration">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MissionDuration"/>
+        <sys_self:measuresValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_efficiency"/>
+        <sys_self:affectsInPossitive rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</sys_self:affectsInPossitive>
+        <sys_self:affectsInNegative rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</sys_self:affectsInNegative>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#miss_mineral_productivity -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#miss_mineral_productivity">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#MineralProductivity"/>
+        <sys_self:measuresValue rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_extraction"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_interface -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_interface">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#ModuleInterface"/>
+        <sys_self:isType>couplingLink</sys_self:isType>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_mining_interface -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_mining_interface">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#ModuleInterface"/>
+        <sys_self:isType>base_link</sys_self:isType>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#RoboticModule"/>
+        <sys_self:hasComponentStatus rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_status"/>
+        <sys_self:hasInterface rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_interface"/>
+        <sys_self:realizes rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#cap_support"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_force -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_force">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#ForceApplied"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#mineral_ext_rate"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.9</sys_self:hasMetricValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#RoboticModule"/>
+        <sys_self:contributesToGoal rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#goal_mineral_extracted"/>
+        <sys_self:hasComponentStatus rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining_status"/>
+        <sys_self:hasInterface rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_mining_interface"/>
+        <sys_self:realizes rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#cap_extract"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining_force -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining_force">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#ForceApplied"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#mineral_ext_rate"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.5</sys_self:hasMetricValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining_slurry_rate -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining_slurry_rate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SlurryProcessingRate"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#mineral_processing_time"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.6</sys_self:hasMetricValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining_status -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_mining_status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#ComponentStatus"/>
+        <sys_self:hasComponentStatusValue>AVAILABLE</sys_self:hasComponentStatusValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_slurry_rate -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_slurry_rate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SlurryProcessingRate"/>
+        <sys_self:affectsMetric rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#mineral_processing_time"/>
+        <sys_self:measuresComponentPerf rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim"/>
+        <sys_self:hasMetricValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.3</sys_self:hasMetricValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_status -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#rm2_sim_status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#ComponentStatus"/>
+        <sys_self:hasComponentStatusValue>AVAILABLE</sys_self:hasComponentStatusValue>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#robotic_op -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#robotic_op">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#RoboticWorker"/>
+        <sys_self:interestedIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_robot_safety"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#surface_op -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#surface_op">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#SurfaceOperator"/>
+        <sys_self:interestedIn rdf:resource="http://www.semanticweb.org/esther/ontologies/app_attach#value_extraction"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#value_efficiency -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#value_efficiency">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#EfficiencyValue"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#value_extraction -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#value_extraction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#ExtractionValue"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/app_attach#value_robot_safety -->
+
+    <NamedIndividual rdf:about="http://www.semanticweb.org/esther/ontologies/app_attach#value_robot_safety">
+        <rdf:type rdf:resource="http://www.semanticweb.org/esther/ontologies/rm_domain#RobotSafetyValue"/>
+    </NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->

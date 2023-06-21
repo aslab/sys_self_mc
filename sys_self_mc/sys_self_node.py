@@ -3,9 +3,6 @@
 import rclpy
 
 from rclpy.node import Node
-from rclpy.parameter import Parameter
-from rclpy.callback_groups import ReentrantCallbackGroup
-from rclpy.action import ActionServer, CancelResponse
 from diagnostic_msgs.msg import DiagnosticArray
 from diagnostic_msgs.msg import KeyValue
 from ament_index_python.packages import get_package_share_directory
@@ -18,22 +15,30 @@ from yaml.loader import SafeLoader
 class SysSelfROS(Node, SysSelf):
     def __init__(self):
         super().__init__("sys_self_node")
+
+        self.declare_parameter('ontologies', rclpy.Parameter.Type.STRING_ARRAY) 
+        self.declare_parameter('application', rclpy.Parameter.Type.STRING)    
+
+        ontol = self.get_parameter('ontologies').value
+        applic = self.get_parameter('application').value
+
+
         path = os.path.join(get_package_share_directory('sys_self_mc'), 'ontologies')
-        names = ["app_loc.owl","rm_domain.owl", "sys_self.owl"]
-        SysSelf.__init__(self, path, names)
+        # ontologies = ["app_attach.owl","rm_domain.owl", "sys_self.owl"]
+        SysSelf.__init__(self, path, ontol)
         self.load_OWL_file()
         self.get_logger().info("Initialization OK")
         self.subscription_ = self.create_subscription(DiagnosticArray, 'diagnostic', self.diagnostics_callback, 1)
-        self.application_path = os.path.join(get_package_share_directory('rm2_simulation'))
+        self.application_path = os.path.join(get_package_share_directory(applic))
   
     def diagnostics_callback(self, msg):
         ERROR = int(2).to_bytes(1, 'big') # convert bytes to diagnostic level status
+        WARN = int(1).to_bytes(1, 'big')
 
-        # if self.onto is not None:
         for diagnostic_status in msg.status:
-            if diagnostic_status.message == "ComponentStatus":
-                self.get_logger().info("New component status received")
-                if diagnostic_status.level == ERROR:
+            if diagnostic_status.level == ERROR:
+                self.get_logger().info("New ERROR status received")
+                if diagnostic_status.message == "ComponentStatus":
                     status = "UNAVAILABLE"
                     source = diagnostic_status.name + "_status"
                     type = "has" + diagnostic_status.message +"Value"
@@ -41,27 +46,42 @@ class SysSelfROS(Node, SysSelf):
                         result = self.receive_update(status, source, type)
                         if result:
                             self.get_logger().info("Component {} status updated to value {}".format(diagnostic_status.name, status))
-                            adaption = self.get_adaption_mechanism(diagnostic_status.name)
-
+                            adaption = self.find_adaption(diagnostic_status.name)
                             self.request_configuration(adaption)
+            elif diagnostic_status.level == WARN:
+                self.get_logger().info("New WARN status received, checking metrics")
+                object_affected = self.check_metric(diagnostic_status.name, diagnostic_status.message)
+                if object_affected is not None:
+                    adaption = self.find_adaption(object_affected.name)
+                    self.request_configuration(adaption)
 
     def request_configuration(self, adaption):
-
         for adapt in adaption:
             file = os.path.join(self.application_path, 'config', (adapt.name + '.yaml')) # reconfigurations available specified in yaml file
             if os.path.isfile(file):
                     self.get_logger().info("New Configuration requested: {} of type ROS2 NODE".format(adaption))
                     self.reconfiguration_execution(adapt,file)
+                    
+            # else:
+            #     self.get_logger().info("New Configuration requested: {} of type ROS2 TOPIC".format(adaption))
+                #TODO GET ADAPT FOR GOAL
+
                 
     def reconfiguration_execution(self, adapt, file):
         with open(file) as f:
+
             data = yaml.load(f, Loader=SafeLoader)
             node = adapt.name + "_node"
-            remap_list = data[node]['ros__parameters']['remappings']
-            remap = " --remap " + remap_list[0] + ":=" + remap_list[1] + " --remap " + remap_list[2] + ":=" + remap_list[3]
-            
-            command = ["ros2 run " + adapt.name + " " + node + " --ros-args" + remap + " --params-file " + file]
-            print(command)
+
+            if data[node] is not None:
+                remap_list = data[node]['ros__parameters']['remappings']
+                remap = " --remap " + remap_list[0] + ":=" + remap_list[1] + " --remap " + remap_list[2] + ":=" + remap_list[3]
+                
+                command = ["ros2 run " + adapt.name + " " + node + " --ros-args" + remap + " --params-file " + file]
+            else:
+                command = ["ros2 run " + adapt.name + " " + node + ".py"]
+
+
         try:
             subprocess.Popen(command, shell = True)
             self.get_logger().info("------------Reconfiguration successful------------")

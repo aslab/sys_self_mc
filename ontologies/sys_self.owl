@@ -33,6 +33,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#composableWithCapability -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#composableWithCapability">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Capability"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Capability"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/esther/ontologies/sys_self#constrainsCapability -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#constrainsCapability">
@@ -114,6 +124,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#isRealizedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#isRealizedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#realizes"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Capability"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Component"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/esther/ontologies/sys_self#measuresComponentPerf -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#measuresComponentPerf">
@@ -158,6 +178,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.semanticweb.org/esther/ontologies/sys_self#affectsInPossitive -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/esther/ontologies/sys_self#affectsInPossitive">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/esther/ontologies/sys_self#Metric"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
     
 
 

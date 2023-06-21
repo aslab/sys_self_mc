@@ -1,0 +1,4 @@
+sys_self_node:
+  ros__parameters:
+    ontologies: ["app_attach.owl","rm_domain.owl", "sys_self.owl"]
+    application: "rm2_attachable"
