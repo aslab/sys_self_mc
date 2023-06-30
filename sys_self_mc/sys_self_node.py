@@ -56,15 +56,29 @@ class SysSelfROS(Node, SysSelf):
                     self.request_configuration(adaption)
 
     def request_configuration(self, adaption):
-        for adapt in adaption:
+        # if adapt of type component -> NODE
+        # if adapt of type goal -> ACTION
+        for adapt in adaption: 
             file = os.path.join(self.application_path, 'config', (adapt.name + '.yaml')) # reconfigurations available specified in yaml file
             if os.path.isfile(file):
                     self.get_logger().info("New Configuration requested: {} of type ROS2 NODE".format(adaption))
                     self.reconfiguration_execution(adapt,file)
                     
             # else:
-            #     self.get_logger().info("New Configuration requested: {} of type ROS2 TOPIC".format(adaption))
+            #     self.get_logger().info("New Configuration requested: {} of type ROS2 ACTION".format(adaption))
                 #TODO GET ADAPT FOR GOAL
+
+            # ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{
+            # pose: {
+            #     header: {stamp: { sec: 0, nanosec: 0 },
+            #     frame_id: 'map'
+            #     },
+            #     pose: {
+            #         position: { x: 0.0, y: 0.0, z: 0.0 },
+            #         orientation: { x: 0.0, y: 0.0, z: 0.0, w: 0.0 }
+            #     }
+            #     }
+            #     }"
 
                 
     def reconfiguration_execution(self, adapt, file):
@@ -87,11 +101,6 @@ class SysSelfROS(Node, SysSelf):
             self.get_logger().info("------------Reconfiguration successful------------")
         except OSError as e:
             self.get_logger().info(f"Error executing command: {e}")
-            #     while process.poll() is None:  # Check if the process is still running
-            #         pass  # Process is still running, continue the loop
-            # except KeyboardInterrupt:
-            #     os.killpg(os.getpgid(process.pid), signal.SIGTERM)
-
 
 def main():
 
